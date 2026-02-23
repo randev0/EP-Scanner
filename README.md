@@ -9,12 +9,12 @@ Daily scraper for [ePerolehan](https://www.eperolehan.gov.my/web/epapp/notice-bo
         ↓
 scrape_eperolehan.py
         ↓ (writes)
-~/.openclaw/workspace-career_coach/PROCUREMENT.md
+~/.openclaw/workspace-ep_scanner/PROCUREMENT.md
         ↓
 [OpenClaw Cron 9:15AM MYT]
-career_coach agent reads + analyzes
+ep_scanner agent reads + analyzes
         ↓
-Telegram → @RanWorkManagerBot → Imran
+Telegram → @RanEPScannerBot → Imran
 ```
 
 ## Setup
@@ -23,7 +23,7 @@ Telegram → @RanWorkManagerBot → Imran
 
 - **Malaysian server IP** (ePerolehan is behind Akamai which blocks all non-MY datacenter IPs)
 - Python 3.10+
-- OpenClaw running with `career_coach` agent
+- OpenClaw running with `ep_scanner` agent
 
 ### 1. Install dependencies
 
@@ -40,15 +40,15 @@ Edit `eperolehan_config.json`:
 {
   "zenrows_api_key": "",
   "target_url": "https://www.eperolehan.gov.my/web/epapp/notice-board",
-  "output_file": "/home/node/.openclaw/workspace-career_coach/PROCUREMENT.md",
+  "output_file": "/home/openclaw/.openclaw/workspace-ep_scanner/PROCUREMENT.md",
   "keywords": ["IT", "ICT", "software", "sistem", "web", "digital", ...]
 }
 ```
 
 - **`zenrows_api_key`**: Leave empty if running on a Malaysian IP (direct access works).
   If on a non-MY server, sign up free at [zenrows.com](https://www.zenrows.com) (no credit card, 1000 credits/month).
-- **`output_file`**: Set to the `career_coach` workspace path on your server.
-  Typical: `/home/node/.openclaw/workspace-career_coach/PROCUREMENT.md`
+- **`output_file`**: Set to the `ep_scanner` workspace path on your server.
+  Typical: `/home/openclaw/.openclaw/workspace-ep_scanner/PROCUREMENT.md`
 
 ### 3. Test
 
@@ -63,7 +63,7 @@ Check `PROCUREMENT.md` was created with tender data.
 ```bash
 crontab -e
 # Add:
-0 1 * * * python3 /path/to/scrape_eperolehan.py >> /path/to/eperolehan_scraper.log 2>&1
+0 1 * * * /home/openclaw/.openclaw/workspace-ep_scanner/venv/bin/python3 /home/openclaw/.openclaw/workspace-ep_scanner/EP-Scanner/scrape_eperolehan.py >> /home/openclaw/.openclaw/workspace-ep_scanner/EP-Scanner/eperolehan_scraper.log 2>&1
 ```
 
 ### 5. OpenClaw cron job
@@ -73,7 +73,7 @@ Add this job to `~/.openclaw/cron/jobs.json` (restart OpenClaw after editing):
 ```json
 {
   "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-  "agentId": "career_coach",
+  "agentId": "ep_scanner",
   "name": "ePerolehan Procurement Scout",
   "enabled": true,
   "notify": true,

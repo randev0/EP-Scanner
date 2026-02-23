@@ -1,7 +1,7 @@
 {
   "zenrows_api_key": "REPLACE_WITH_YOUR_ZENROWS_API_KEY",
   "target_url": "https://www.eperolehan.gov.my/web/epapp/notice-board",
-  "output_file": "/home/openclaw/.openclaw/workspace-career_coach/PROCUREMENT.md",
+  "output_file": "/home/openclaw/.openclaw/workspace-ep_scanner/PROCUREMENT.md",
   "keywords": [
     "IT", "ICT", "software", "sistem", "system", "aplikasi", "application",
     "web", "digital", "teknologi", "technology", "data", "platform", "portal",
