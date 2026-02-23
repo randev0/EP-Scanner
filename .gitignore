@@ -1,0 +1,6 @@
+*.log
+__pycache__/
+*.pyc
+.env
+# Don't commit output files
+PROCUREMENT.md
