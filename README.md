@@ -1,6 +1,6 @@
 # EP-Scanner
 
-Daily scraper for [ePerolehan](https://www.eperolehan.gov.my/web/epapp/notice-board) — Malaysian government procurement notice board. Filters for IT/digital/software tenders relevant to Steadigital and delivers them via Telegram through OpenClaw.
+Daily scraper for [ePerolehan](https://www.eperolehan.gov.my/web/epapp/notice-board) — Malaysian government procurement notice board. Filters for IT/digital/software tenders and delivers them via Telegram through OpenClaw.
 
 ## How It Works
 
@@ -14,7 +14,7 @@ scrape_eperolehan.py
 [OpenClaw Cron 9:15AM MYT]
 ep_scanner agent reads + analyzes
         ↓
-Telegram → @RanEPScannerBot → Imran
+Telegram → Your Bot → You
 ```
 
 ## Setup
@@ -86,13 +86,13 @@ Add this job to `~/.openclaw/cron/jobs.json` (restart OpenClaw after editing):
   "wakeMode": "now",
   "payload": {
     "kind": "agentTurn",
-    "message": "Read the file `PROCUREMENT.md` in your workspace.\n\n**YOUR JOB:**\nYou are a procurement scout for Imran / Steadigital. Read the daily scraped procurement notices and identify opportunities worth pursuing.\n\n**Steadigital's Business Profile:**\nIT company — software development, web/app development, digital platforms, ICT systems, data analytics, digital marketing, content creation, system integration, cloud services, cybersecurity consulting.\n\n**RULES:**\n1. If `PROCUREMENT.md` shows **SCRAPING FAILED** — reply with EXACTLY: `NO_REPLY`\n2. If there are **no relevant notices** today — reply with EXACTLY: `NO_REPLY`\n3. If there ARE relevant notices — deliver a Telegram message to Imran\n\n**MESSAGE FORMAT:**\n```\n🏛️ PEROLEHAN HARI INI — [DATE]\n\nAda [N] peluang untuk Steadigital:\n\n📋 [TITLE]\n   Ref: [REF]\n   Tutup: [CLOSING DATE]\n   Kenapa berkaitan: [1 sentence]\n\n---\nLink: https://www.eperolehan.gov.my/web/epapp/notice-board\n```",
+    "message": "Read the file `PROCUREMENT.md` in your workspace.\n\n**YOUR JOB:**\nYou are a procurement scout. Read the daily scraped procurement notices and identify opportunities worth pursuing.\n\n**Business Profile:**\nIT company — software development, web/app development, digital platforms, ICT systems, data analytics, digital marketing, content creation, system integration, cloud services, cybersecurity consulting.\n\n**RULES:**\n1. If `PROCUREMENT.md` shows **SCRAPING FAILED** — reply with EXACTLY: `NO_REPLY`\n2. If there are **no relevant notices** today — reply with EXACTLY: `NO_REPLY`\n3. If there ARE relevant notices — deliver a Telegram message\n\n**MESSAGE FORMAT:**\n```\n🏛️ PEROLEHAN HARI INI — [DATE]\n\nAda [N] peluang:\n\n📋 [TITLE]\n   Ref: [REF]\n   Tutup: [CLOSING DATE]\n   Kenapa berkaitan: [1 sentence]\n\n---\nLink: https://www.eperolehan.gov.my/web/epapp/notice-board\n```",
     "model": "groq-cron/meta-llama/llama-4-scout-17b-16e-instruct"
   },
   "delivery": {
     "mode": "announce",
     "channel": "telegram",
-    "to": "10087352"
+    "to": "YOUR_TELEGRAM_ID"
   }
 }
 ```
